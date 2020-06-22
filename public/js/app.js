@@ -2514,6 +2514,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       submitted: true,
       rolesitem: [],
+      url: "api/users/",
       form: {
         id: null,
         name: null,
@@ -2521,7 +2522,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["permissions", "status", "urlroles"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["permissions", "status"])),
   created: function created() {
     this.getlist();
   },
@@ -2564,7 +2565,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 timer: 1500
               });
               $("#model").modal("hide");
-              console.log(_this.form);
 
               _this.$store.dispatch("Roleactions");
             })["catch"](function (error) {

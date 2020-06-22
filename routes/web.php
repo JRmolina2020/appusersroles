@@ -16,14 +16,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('usuarios', function () {
         return view('users.index');
     });
-
-    Route::get('roles', function () {
-        return view('roles.index');
+    Route::group(['middleware' => ['permission:Administrador de seguridad']], function () {
+        Route::get('roles', function () {
+            return view('roles.index');
+        });
+        Route::get('permisos', function () {
+            return view('permissions.index');
+        });
     });
-    Route::get('permisos', function () {
-        return view('permissions.index');
-    });
-
     Route::prefix('api')->group(function () {
         Route::resource('users', 'UserController')->except([
             'show', 'create', 'edit'

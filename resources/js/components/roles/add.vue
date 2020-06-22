@@ -102,6 +102,7 @@ export default {
         return {
             submitted: true,
             rolesitem: [],
+            url: "api/users/",
             form: {
                 id: null,
                 name: null,
@@ -110,7 +111,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["permissions", "status", "urlroles"])
+        ...mapState(["permissions", "status"])
     },
     created() {
         this.getlist();
@@ -154,7 +155,6 @@ export default {
                                     timer: 1500
                                 });
                                 $("#model").modal("hide");
-                                console.log(this.form);
                                 this.$store.dispatch("Roleactions");
                             })
                             .catch(error => {
