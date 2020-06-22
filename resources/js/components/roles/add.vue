@@ -126,7 +126,19 @@ export default {
                         let url = `${this.urlroles}${id}`;
                         axios
                             .put(url, this.form)
-                            .then(response => {})
+                            .then(response => {
+                                this.$store.dispatch("Useractions");
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: `${response.data.message}`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $("#model").modal("hide");
+                                this.$store.dispatch("Roleactions");
+                                this.clear();
+                            })
                             .catch(error => {
                                 console.log(error.response);
                             });
@@ -134,7 +146,16 @@ export default {
                         axios
                             .post(this.urlroles, this.form)
                             .then(response => {
-                                console.log(response);
+                                Swal.fire({
+                                    position: "center",
+                                    icon: "success",
+                                    title: `${response.data.message}`,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                $("#model").modal("hide");
+                                console.log(this.form);
+                                this.$store.dispatch("Roleactions");
                             })
                             .catch(error => {
                                 console.log(error.response);
