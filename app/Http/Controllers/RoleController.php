@@ -19,7 +19,7 @@ class RoleController extends Controller
     {;
         if (!$request->ajax()) return redirect('/');
         $roles = Role::with('permissions')->get();
-        return response()->json($roles);
+        return response()->json(['message' => 'rol creado'], 200);
     }
 
 
