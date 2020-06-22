@@ -143,14 +143,8 @@ export default {
                                 console.log(error.response);
                             });
                     } else {
-                        axios
-                            .post(this.urlroles, this.form)
-                            .then(response => {
-                                console.log(response);
-                            })
-                            .catch(error => {
-                                console.log(error.response);
-                            });
+                          let response = await axios.post(this.urlroles, this.form);
+                                this.$store.dispatch("Useractions");
                     }
                 }
             });
