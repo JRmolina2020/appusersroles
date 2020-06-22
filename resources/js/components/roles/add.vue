@@ -126,19 +126,7 @@ export default {
                         let url = `${this.urlroles}${id}`;
                         axios
                             .put(url, this.form)
-                            .then(response => {
-                                this.$store.dispatch("Useractions");
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "success",
-                                    title: `${response.data.message}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $("#model").modal("hide");
-                                this.$store.dispatch("Roleactions");
-                                this.clear();
-                            })
+                            .then(response => {})
                             .catch(error => {
                                 console.log(error.response);
                             });

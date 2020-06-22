@@ -2536,22 +2536,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         if (valid) {
           if (id) {
             var url = "".concat(_this.urlroles).concat(id);
-            axios.put(url, _this.form).then(function (response) {
-              _this.$store.dispatch("Useractions");
-
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "".concat(response.data.message),
-                showConfirmButton: false,
-                timer: 1500
-              });
-              $("#model").modal("hide");
-
-              _this.$store.dispatch("Roleactions");
-
-              _this.clear();
-            })["catch"](function (error) {
+            axios.put(url, _this.form).then(function (response) {})["catch"](function (error) {
               console.log(error.response);
             });
           } else {
