@@ -91,7 +91,6 @@ export default {
                   timer: 1500
                 });
                 $("#model").modal("hide");
-                this.$store.dispatch("Permissionsactions");
                 this.clear();
               })
               .catch(error => {

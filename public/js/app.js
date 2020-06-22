@@ -2167,8 +2167,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               });
               $("#model").modal("hide");
 
-              _this.$store.dispatch("Permissionsactions");
-
               _this.clear();
             })["catch"](function (error) {
               console.log(error.response);
