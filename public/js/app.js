@@ -2127,6 +2127,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2156,7 +2167,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           if (id) {
             var url = "".concat(_this.urlpermissions).concat(id);
             axios.put(url, _this.form).then(function (response) {
-              _this.$store.dispatch("Permissionactions");
+              _this.$store.dispatch("Permissionsactions");
 
               Swal.fire({
                 position: "center",
@@ -56230,7 +56241,11 @@ var render = function() {
                   _vm._v(" "),
                   _vm.submitted && _vm.errors.has("nombre")
                     ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.first("nombre")))
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.errors.first("nombre")) +
+                            "\n                    "
+                        )
                       ])
                     : _vm._e()
                 ]),
