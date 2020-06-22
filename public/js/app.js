@@ -2574,7 +2574,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 console.log(_context.t0.response);
 
               case 11:
-                _context.next = 26;
+                _context.next = 23;
                 break;
 
               case 13:
@@ -2594,13 +2594,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 console.log(_context.t1);
 
               case 23:
-                $("#model").modal("hide");
-
-                _this.$store.dispatch("Roleactions");
-
-                _this.clear();
-
-              case 26:
               case "end":
                 return _context.stop();
             }

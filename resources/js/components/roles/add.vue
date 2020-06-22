@@ -140,9 +140,6 @@ export default {
                 } catch (error) {
                     console.log(error);
                 }
-                $("#model").modal("hide");
-                this.$store.dispatch("Roleactions");
-                this.clear();
             }
         },
         show(row) {
