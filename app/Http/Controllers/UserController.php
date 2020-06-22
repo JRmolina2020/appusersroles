@@ -37,7 +37,7 @@ class UserController extends Controller
             'email' => $request['email'],
             'password' => bcrypt($request['password']),
         ]);
-        $user->assignRole($request['rol']);
+
         return response()->json(['message' => 'El usuario ha sido creado'], 200);
     }
 
