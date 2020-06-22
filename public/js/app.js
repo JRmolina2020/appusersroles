@@ -2402,18 +2402,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utilities/modal.vue */ "./resources/js/components/utilities/modal.vue");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
-/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
+/* harmony import */ var _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utilities/modal.vue */ "./resources/js/components/utilities/modal.vue");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
+/* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2515,8 +2507,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   name: "add",
   components: {
-    ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_2___default.a
+    ModalResource: _utilities_modal_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_1___default.a
   },
   data: function data() {
     return {
@@ -2524,12 +2516,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       rolesitem: [],
       form: {
         id: null,
-        name: "",
+        name: null,
         permissions: []
       }
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_3__["mapState"])(["permissions", "status", "urlroles"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["permissions", "status", "urlroles"])),
   created: function created() {
     this.getlist();
   },
@@ -2540,66 +2532,47 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     add: function add(id) {
       var _this = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response, _response;
+      this.$validator.validate().then(function (valid) {
+        if (valid) {
+          if (id) {
+            var url = "".concat(_this.urlroles).concat(id);
+            axios.put(url, _this.form).then(function (response) {
+              _this.$store.dispatch("Useractions");
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                if (!id) {
-                  _context.next = 13;
-                  break;
-                }
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "".concat(response.data.message),
+                showConfirmButton: false,
+                timer: 1500
+              });
+              $("#model").modal("hide");
 
-                _context.prev = 1;
-                _context.next = 4;
-                return axios.put(_this.urlroles.id, _this.form);
+              _this.$store.dispatch("Roleactions");
 
-              case 4:
-                response = _context.sent;
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "normal",
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                _context.next = 11;
-                break;
+              _this.clear();
+            })["catch"](function (error) {
+              console.log(error.response);
+            });
+          } else {
+            axios.post(_this.urlroles, _this.form).then(function (response) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "".concat(response.data.message),
+                showConfirmButton: false,
+                timer: 1500
+              });
+              $("#model").modal("hide");
+              console.log(_this.form);
 
-              case 8:
-                _context.prev = 8;
-                _context.t0 = _context["catch"](1);
-                console.log(_context.t0.response);
-
-              case 11:
-                _context.next = 23;
-                break;
-
-              case 13:
-                _context.prev = 13;
-                _context.next = 16;
-                return axios.post(_this.urlroles, _this.form);
-
-              case 16:
-                _response = _context.sent;
-                console.log(_response);
-                _context.next = 23;
-                break;
-
-              case 20:
-                _context.prev = 20;
-                _context.t1 = _context["catch"](13);
-                console.log(_context.t1);
-
-              case 23:
-              case "end":
-                return _context.stop();
-            }
+              _this.$store.dispatch("Roleactions");
+            })["catch"](function (error) {
+              console.log(error.response);
+            });
           }
-        }, _callee, null, [[1, 8], [13, 20]]);
-      }))();
+        }
+      });
     },
     show: function show(row) {
       var _this2 = this;
