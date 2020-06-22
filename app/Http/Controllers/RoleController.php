@@ -31,7 +31,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $roles = Role::create([
+            'name' => $request['name'],
+
+        ]);
+
+        return response()->json(['message' => 'El rol ha sido creado'], 200);
     }
 
     /**
