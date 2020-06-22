@@ -119,51 +119,36 @@ export default {
         getlist() {
             this.$store.dispatch("Permissionsactions");
         },
-        add(id) {
-            this.$validator.validate().then(valid => {
-                if (valid) {
-                    if (id) {
-                        let url = `${this.urlroles}${id}`;
-                        axios
-                            .put(url, this.form)
-                            .then(response => {
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "success",
-                                    title: `${response.data.message}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $("#model").modal("hide");
-                                this.$store.dispatch("Roleactions");
-                                this.clear();
-                            })
-                            .catch(error => {
-                                console.log(error.response);
-                            });
-                    } else {
-                        axios
-                            .post(this.urlroles, this.form)
-                            .then(response => {
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "success",
-                                    title: `${response.data.message}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $("#model").modal("hide");
-                                console.log(this.form);
-                                this.$store.dispatch("Roleactions");
-                            })
-                            .catch(error => {
-                                console.log(error.response);
-                            });
-                    }
+        async add(id) {
+            if (id) {
+                let url = `${this.urlroles}/${id}`;
+                try {
+                    let response = await axios.put(url, this.form);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `normal`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } catch (error) {
+                    console.log(error.response);
                 }
-            });
+            } else {
+                try {
+                    let response = await axios.post(this.urlroles, this.form);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `bien`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         },
-
         show(row) {
             this.form.id = row.id;
             this.form.name = row.name;
