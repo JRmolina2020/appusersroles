@@ -136,13 +136,7 @@ export default {
             } else {
                 try {
                     let response = await axios.post(this.urlroles, this.form);
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: `${response}`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
+                    console.log(response);
                 } catch (error) {
                     console.log(error);
                 }

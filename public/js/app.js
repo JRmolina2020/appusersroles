@@ -2584,13 +2584,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 16:
                 _response = _context.sent;
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "".concat(_response),
-                  showConfirmButton: false,
-                  timer: 1500
-                });
+                console.log(_response);
                 _context.next = 23;
                 break;
 
