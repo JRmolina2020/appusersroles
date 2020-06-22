@@ -2524,7 +2524,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       rolesitem: [],
       form: {
         id: null,
-        name: null,
+        name: "",
         permissions: []
       }
     };
@@ -2541,23 +2541,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var url, response, _response;
+        var response, _response;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (!id) {
-                  _context.next = 14;
+                  _context.next = 13;
                   break;
                 }
 
-                url = "".concat(_this.urlroles, "/").concat(id);
-                _context.prev = 2;
-                _context.next = 5;
-                return axios.put(url, _this.form);
+                _context.prev = 1;
+                _context.next = 4;
+                return axios.put(_this.urlroles.id, _this.form);
 
-              case 5:
+              case 4:
                 response = _context.sent;
                 Swal.fire({
                   position: "center",
@@ -2566,46 +2565,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   showConfirmButton: false,
                   timer: 1500
                 });
-                _context.next = 12;
+                _context.next = 11;
                 break;
 
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](2);
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](1);
                 console.log(_context.t0.response);
 
-              case 12:
-                _context.next = 24;
+              case 11:
+                _context.next = 26;
                 break;
 
-              case 14:
-                _context.prev = 14;
-                _context.next = 17;
+              case 13:
+                _context.prev = 13;
+                _context.next = 16;
                 return axios.post(_this.urlroles, _this.form);
 
-              case 17:
+              case 16:
                 _response = _context.sent;
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "bien",
+                  title: "".concat(_response),
                   showConfirmButton: false,
                   timer: 1500
                 });
-                _context.next = 24;
+                _context.next = 23;
                 break;
 
-              case 21:
-                _context.prev = 21;
-                _context.t1 = _context["catch"](14);
+              case 20:
+                _context.prev = 20;
+                _context.t1 = _context["catch"](13);
                 console.log(_context.t1);
 
-              case 24:
+              case 23:
+                $("#model").modal("hide");
+
+                _this.$store.dispatch("Roleactions");
+
+                _this.clear();
+
+              case 26:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 9], [14, 21]]);
+        }, _callee, null, [[1, 8], [13, 20]]);
       }))();
     },
     show: function show(row) {

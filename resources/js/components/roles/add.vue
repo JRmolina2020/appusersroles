@@ -104,7 +104,7 @@ export default {
             rolesitem: [],
             form: {
                 id: null,
-                name: null,
+                name: "",
                 permissions: []
             }
         };
@@ -121,9 +121,8 @@ export default {
         },
         async add(id) {
             if (id) {
-                let url = `${this.urlroles}/${id}`;
                 try {
-                    let response = await axios.put(url, this.form);
+                    let response = await axios.put(this.urlroles.id, this.form);
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -140,13 +139,16 @@ export default {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `bien`,
+                        title: `${response}`,
                         showConfirmButton: false,
                         timer: 1500
                     });
                 } catch (error) {
                     console.log(error);
                 }
+                $("#model").modal("hide");
+                this.$store.dispatch("Roleactions");
+                this.clear();
             }
         },
         show(row) {
