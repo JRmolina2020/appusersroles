@@ -7,7 +7,7 @@
             </div>
 
             <div class="login-box-body">
-                <p class="login-box-msg">Inicio de sección</p>
+                <p class="login-box-msg">Inicio de sección B</p>
                 <form method="POST" @submit.prevent="login" autocomplete="off">
                     <div class="box-body">
                         <div class="form-group">

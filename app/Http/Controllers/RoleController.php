@@ -35,7 +35,7 @@ class RoleController extends Controller
             'name' => $request['name'],
 
         ]);
-        $roles->givePermissionTo($request['permissions']);
+        $roles->save();
         return response()->json(['message' => 'El rol ha sido creado'], 200);
     }
 

@@ -55960,7 +55960,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "login-box-body" }, [
         _c("p", { staticClass: "login-box-msg" }, [
-          _vm._v("Inicio de sección")
+          _vm._v("Inicio de sección B")
         ]),
         _vm._v(" "),
         _c(
