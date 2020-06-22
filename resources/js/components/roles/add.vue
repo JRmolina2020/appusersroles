@@ -102,7 +102,6 @@ export default {
         return {
             submitted: true,
             rolesitem: [],
-            url: "api/users/",
             form: {
                 id: null,
                 name: null,
@@ -111,7 +110,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(["permissions", "status"])
+        ...mapState(["permissions", "status", "urlroles"])
     },
     created() {
         this.getlist();
@@ -145,17 +144,9 @@ export default {
                             });
                     } else {
                         axios
-                            .post(this.url, this.form)
+                            .post(this.urlroles, this.form)
                             .then(response => {
-                                Swal.fire({
-                                    position: "center",
-                                    icon: "success",
-                                    title: `${response.data.message}`,
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                $("#model").modal("hide");
-                                this.$store.dispatch("Roleactions");
+                                console.log(response);
                             })
                             .catch(error => {
                                 console.log(error.response);

@@ -2514,7 +2514,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       submitted: true,
       rolesitem: [],
-      url: "api/users/",
       form: {
         id: null,
         name: null,
@@ -2522,7 +2521,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
     };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["permissions", "status"])),
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapState"])(["permissions", "status", "urlroles"])),
   created: function created() {
     this.getlist();
   },
@@ -2556,17 +2555,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               console.log(error.response);
             });
           } else {
-            axios.post(_this.url, _this.form).then(function (response) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "".concat(response.data.message),
-                showConfirmButton: false,
-                timer: 1500
-              });
-              $("#model").modal("hide");
-
-              _this.$store.dispatch("Roleactions");
+            axios.post(_this.urlroles, _this.form).then(function (response) {
+              console.log(response);
             })["catch"](function (error) {
               console.log(error.response);
             });
