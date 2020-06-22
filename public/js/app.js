@@ -2484,6 +2484,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2542,17 +2556,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             });
           } else {
             axios.post(_this.urlroles, _this.form).then(function (response) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "".concat(response.data.message),
-                showConfirmButton: false,
-                timer: 1500
-              });
-              $("#model").modal("hide");
-              console.log(_this.form);
-
-              _this.$store.dispatch("Roleactions");
+              console.log(response);
             })["catch"](function (error) {
               console.log(error.response);
             });
@@ -56582,7 +56586,11 @@ var render = function() {
                   _vm._v(" "),
                   _vm.submitted && _vm.errors.has("nombre")
                     ? _c("div", { staticClass: "invalid-feedback" }, [
-                        _vm._v(_vm._s(_vm.errors.first("nombre")))
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.errors.first("nombre")) +
+                            "\n                    "
+                        )
                       ])
                     : _vm._e()
                 ]),
@@ -56657,9 +56665,9 @@ var render = function() {
                                       }
                                     }),
                                     _vm._v(
-                                      "\n                    " +
+                                      "\n                                        " +
                                         _vm._s(item.name) +
-                                        "\n                  "
+                                        "\n                                    "
                                     )
                                   ])
                                 ])
