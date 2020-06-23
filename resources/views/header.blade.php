@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="user" content="{{ Auth::user() }}">
         <title>Laravel</title>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
@@ -10,11 +12,14 @@
         <link rel="stylesheet" href="{{ asset('css/alt/ionicons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/alt/skin-red.min.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontisto@v3.0.4/css/fontisto/fontisto.min.css"></i>
-        <script type="text/javascript">
+        <script>
+         @auth
           window.Laravel = {
-              csrfToken: "{{ csrf_token() }}",
               jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():null !!}
           }
+           @else
+          window.Laravel = [];
+          @endauth
         </script> 
     </head>
     <style>

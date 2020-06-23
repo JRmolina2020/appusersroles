@@ -20,6 +20,6 @@ class AuthController extends Controller
     {
         auth()->logout();
         $request->session()->invalidate();
-        return redirect('/');
+        return redirect('login');
     }
 }
