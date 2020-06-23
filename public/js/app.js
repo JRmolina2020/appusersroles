@@ -2541,8 +2541,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var response, _response;
-
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2580,44 +2579,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 console.log(_context.t0.response);
 
               case 14:
-                _context.next = 30;
+                _context.next = 18;
                 break;
 
               case 16:
-                _context.prev = 16;
-                _context.next = 19;
-                return axios.post(_this.urlroles, _this.form);
+                console.log(_this.form);
+                console.log(_this.urlroles);
 
-              case 19:
-                _response = _context.sent;
-                Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "".concat(_response),
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-                console.log(_response);
-
-                _this.clear();
-
-                _this.$store.dispatch("Roleactions");
-
-                $("#model").modal("hide");
-                _context.next = 30;
-                break;
-
-              case 27:
-                _context.prev = 27;
-                _context.t1 = _context["catch"](16);
-                console.log(_context.t1);
-
-              case 30:
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 11], [16, 27]]);
+        }, _callee, null, [[1, 11]]);
       }))();
     },
     show: function show(row) {
