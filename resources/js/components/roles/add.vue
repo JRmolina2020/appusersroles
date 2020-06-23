@@ -145,10 +145,11 @@ export default {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: `${response.data.message}`,
+                        title: `${response}`,
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    console.log(response);
                     this.clear();
                     this.$store.dispatch("Roleactions");
                     $("#model").modal("hide");

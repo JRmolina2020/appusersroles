@@ -2580,7 +2580,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 console.log(_context.t0.response);
 
               case 14:
-                _context.next = 29;
+                _context.next = 30;
                 break;
 
               case 16:
@@ -2593,30 +2593,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "".concat(_response.data.message),
+                  title: "".concat(_response),
                   showConfirmButton: false,
                   timer: 1500
                 });
+                console.log(_response);
 
                 _this.clear();
 
                 _this.$store.dispatch("Roleactions");
 
                 $("#model").modal("hide");
-                _context.next = 29;
+                _context.next = 30;
                 break;
 
-              case 26:
-                _context.prev = 26;
+              case 27:
+                _context.prev = 27;
                 _context.t1 = _context["catch"](16);
                 console.log(_context.t1);
 
-              case 29:
+              case 30:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 11], [16, 26]]);
+        }, _callee, null, [[1, 11], [16, 27]]);
       }))();
     },
     show: function show(row) {
