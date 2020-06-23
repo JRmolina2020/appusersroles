@@ -140,8 +140,22 @@ export default {
                     console.log(error.response);
                 }
             } else {
-                console.log(this.form)
-                console.log(this.urlroles)
+                try {
+                    let response = await axios.post(this.urlroles, this.form);
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: `${response}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    console.log(response);
+                    this.clear();
+                    this.$store.dispatch("Roleactions");
+                    $("#model").modal("hide");
+                } catch (error) {
+                    console.log(error);
+                }
             }
         },
 

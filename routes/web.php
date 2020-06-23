@@ -24,7 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
         return view('permissions.index');
     });
 
-    Route::prefix('api')->group(function () {
+    Route::group(['middleware' => 'cors', 'prefix' => 'api'], function()
+{
+   
         Route::resource('users', 'UserController')->except([
             'show', 'create', 'edit'
         ]);
